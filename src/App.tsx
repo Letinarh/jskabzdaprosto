@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Accordion from "./components/Accordion/Accordion";
+import {Rating} from "./components/Rating/Rating";
+import Switcher from "./components/Switcher/Switcher";
+/*
+const [turned,setTurned] = useState<boolean>(true);*/
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <div>
+            <PageTitle title={"Hello"}/>
+            <Accordion mainTitle={"Menu"} collapsed={true}/>
+            <Rating value={1} />
+            <Accordion mainTitle={"Users"} collapsed={false}/>
+            <Rating value = {3} />
+            <hr/>
+            <Switcher status={true}/>
+            <hr/>
+        </div>
+    );
 }
 
-export default App;
+type pageTitlePropsType ={
+    title:string
+}
+function PageTitle(props:pageTitlePropsType) {
+
+    return <>{props.title}</>
+}
+
+
+
+export default App
