@@ -3,10 +3,17 @@ import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import Switcher from "./components/Switcher/Switcher";
-/*
-const [turned,setTurned] = useState<boolean>(true);*/
+
+
+
 
 function App() {
+    //state
+    let defaultStatus = true;
+    const [turned,setTurned] = useState<boolean>(defaultStatus);
+    function changeStatus (st:boolean) { return !st }
+    const changeStatusCallBack = ()=>{setTurned(changeStatus(turned))}
+    //state
 
     return (
         <div>
@@ -16,7 +23,7 @@ function App() {
             <Accordion mainTitle={"Users"} collapsed={false}/>
             <Rating value = {3} />
             <hr/>
-            <Switcher status={true}/>
+            <Switcher status={turned} changeStatusCallBack={changeStatusCallBack}/> {/*callBAck функцию пробрасываем в компоненту*/}
             <hr/>
         </div>
     );
