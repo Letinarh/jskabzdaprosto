@@ -17,6 +17,12 @@ export function Rating() {
     const [ratingValue,setRatingValue] = useState<number>(0)
     const ratingHi = ()=>{ setRatingValue(ratingValue + 1)}
     const ratingLow = ()=>{ setRatingValue(ratingValue - 1)}
+    const buttonStyle ={
+        width:"45px",
+        height:"20px",
+        border:"1px solid black",
+        borderRadius:"10px"
+    }
 
     return (
         < div>
@@ -25,7 +31,7 @@ export function Rating() {
             <Star selected={ratingValue > 2}/>
             <Star selected={ratingValue > 3}/>
             <Star selected={ratingValue > 4}/>
-            <span onClick={ratingLow}>Decrase </span>
-            <span onClick={ratingHi}> Incrase</span>
+            <span> <button style={buttonStyle} onClick={ratingLow}>Down</button> </span>
+            <span> <button style={buttonStyle} onClick={ratingHi}>Up</button> </span>
         </div>
     )}
