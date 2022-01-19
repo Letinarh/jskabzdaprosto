@@ -1,25 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type accordionPropsType = {
-    mainTitle:string
-    collapsed:boolean
+    mainTitle: string
 }
-function Accordion(props:accordionPropsType) {
-    return <div>
-        <AccordionTitle title={props.mainTitle}/>
-        {!props.collapsed && < AccordionBody/>}
-    </div>
-}
-
-
 type accordionTitlePropsType = {
-    title:string
-}
-function AccordionTitle(props:accordionTitlePropsType) {
-
-    return <h3>{props.title}</h3>
+    title: string
+    collpsedChanger:()=>void
 }
 
+function AccordionTitle(props: accordionTitlePropsType) {
+
+    return <>
+        <h3>{props.title}</h3>
+        <button onClick={props.collpsedChanger}>Toggle</button>
+    </>
+}
 function AccordionBody() {
     return (
         <ul>
@@ -31,4 +26,18 @@ function AccordionBody() {
         </ul>
     )
 }
+function Accordion(props: accordionPropsType) {
+
+    const [collapsed, setCollapsed] = useState(false)
+    const collpsedChanger = () => {setCollapsed(!collapsed)}
+
+    return <div>
+        <AccordionTitle title={props.mainTitle} collpsedChanger={collpsedChanger}/>
+        {!collapsed && < AccordionBody/>}
+    </div>
+}
+
+
+
+
 export default Accordion

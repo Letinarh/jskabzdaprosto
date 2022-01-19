@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from "./Switcher.module.css"
 
 
@@ -32,28 +32,40 @@ const ButtonOff =(props:ButtonPropsType)=>{
 }
 
 type SwitcherPropsType={
-    status: boolean
-    changeStatusCallBack:()=>void
+
 }
 const Switcher = (props:SwitcherPropsType) => {
-
+    //state
+    let defaultStatus = true;
+    const [turned,setTurned] = useState<boolean>(defaultStatus);
+    function changeStatus (st:boolean) { return !st }
+    const changeStatusCallBack = ()=>{setTurned(changeStatus(turned))}
+    //state
+const buttonStyle ={
+    width: "3rem",
+    height: "1.5rem",
+    borderRadius: "5rem",
+    borderStyle: "solid",
+    borderWidth: "2px",
+    textAlign: "center",
+}
     return (
         <div>
             <ButtonOn
                 title={"On"}
-                turn={props.status}
-                changeStatusCallBack={props.changeStatusCallBack} /* Принимаем callBack функцию в Компоненту через пропсы*/
+                turn={turned}
+                changeStatusCallBack={changeStatusCallBack} /* Принимаем callBack функцию в Компоненту через пропсы*/
             />
             <ButtonOff
                 title={"Off"}
-                turn={!props.status}
-                changeStatusCallBack={props.changeStatusCallBack} /* Принимаем callBack функцию в Компоненту через пропсы*/
+                turn={!turned}
+                changeStatusCallBack={changeStatusCallBack} /* Принимаем callBack функцию в Компоненту через пропсы*/
             />
             <span>   </span>
             <Lamp
                 title={"I"}
-                turn={props.status}
-                changeStatusCallBack={props.changeStatusCallBack}
+                turn={turned}
+                changeStatusCallBack={changeStatusCallBack}
             />
         </div>
     );
