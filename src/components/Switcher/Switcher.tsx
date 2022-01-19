@@ -31,24 +31,15 @@ const ButtonOff =(props:ButtonPropsType)=>{
 
 }
 
-type SwitcherPropsType={
 
-}
-const Switcher = (props:SwitcherPropsType) => {
+const Switcher = () => {
     //state
     let defaultStatus = true;
     const [turned,setTurned] = useState<boolean>(defaultStatus);
     function changeStatus (st:boolean) { return !st }
     const changeStatusCallBack = ()=>{setTurned(changeStatus(turned))}
     //state
-const buttonStyle ={
-    width: "3rem",
-    height: "1.5rem",
-    borderRadius: "5rem",
-    borderStyle: "solid",
-    borderWidth: "2px",
-    textAlign: "center",
-}
+
     return (
         <div>
             <ButtonOn
