@@ -1,37 +1,29 @@
 import React, {useState} from "react";
-
+export type ratingValueType = 0| 1 | 2 | 3 | 4 | 5
 type starPropsType = {
     selected:boolean
+    value: ratingValueType
+    onClick:(r:ratingValueType)=>void
 }
 function Star(props:starPropsType) {
-    if (props.selected === true) {
-        return <span><b>star </b></span>
-    }else return (<span>star </span>)
+return <span onClick={()=>props.onClick(props.value)}> {props.selected ? <b>star </b> : "star "}</span>
 }
 
 
 type ratingPropsType ={
-    value: number
+    value:ratingValueType
+    onClick:(value:ratingValueType)=>void
 }
-export function Rating() {
-    const [ratingValue,setRatingValue] = useState<number>(0)
-    const ratingHi = ()=>{ setRatingValue(ratingValue + 1)}
-    const ratingLow = ()=>{ setRatingValue(ratingValue - 1)}
-    const buttonStyle ={
-        width:"45px",
-        height:"20px",
-        border:"1px solid black",
-        borderRadius:"10px"
-    }
+export function Rating(props:ratingPropsType) {
 
     return (
         < div>
-            <Star selected={ratingValue > 0}/>
-            <Star selected={ratingValue > 1}/>
-            <Star selected={ratingValue > 2}/>
-            <Star selected={ratingValue > 3}/>
-            <Star selected={ratingValue > 4}/>
-            <span> <button style={buttonStyle} onClick={ratingLow}>Down</button> </span>
-            <span> <button style={buttonStyle} onClick={ratingHi}>Up</button> </span>
+            <Star  onClick={props.onClick} value={1} selected={props.value > 0}/>
+            <Star  onClick={props.onClick} value={2} selected={props.value > 1}/>
+            <Star  onClick={props.onClick} value={3} selected={props.value > 2}/>
+            <Star  onClick={props.onClick} value={4} selected={props.value > 3}/>
+            <Star  onClick={props.onClick} value={5} selected={props.value > 4}/>
+
+
         </div>
     )}

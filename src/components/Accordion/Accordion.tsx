@@ -5,14 +5,14 @@ type accordionPropsType = {
 }
 type accordionTitlePropsType = {
     title: string
-    collpsedChanger:()=>void
+    OnClick:()=>void
 }
 
 function AccordionTitle(props: accordionTitlePropsType) {
 
     return <>
-        <h3>{props.title}</h3>
-        <button onClick={props.collpsedChanger}>Toggle</button>
+        <h3 onClick={props.OnClick}>{props.title}</h3>
+
     </>
 }
 function AccordionBody() {
@@ -32,7 +32,7 @@ function Accordion(props: accordionPropsType) {
     const collpsedChanger = () => {setCollapsed(!collapsed)}
 
     return <div>
-        <AccordionTitle title={props.mainTitle} collpsedChanger={collpsedChanger}/>
+        <AccordionTitle title={props.mainTitle} OnClick={collpsedChanger}/>
         {!collapsed && < AccordionBody/>}
     </div>
 }

@@ -1,20 +1,23 @@
 import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
-import {Rating} from "./components/Rating/Rating";
+import {Rating, ratingValueType} from "./components/Rating/Rating";
 import Switcher from "./components/Switcher/Switcher";
+import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 
 
 function App() {
-
+const [ratingValue,setRatingValue] = useState<ratingValueType>(0)
 
     return (
         <div>
             <PageTitle title={"Hello"}/>
             <Accordion mainTitle={"Menu"} />
-            <Rating />
+            <Rating onClick={setRatingValue} value={ratingValue}/>
             <Accordion mainTitle={"Users"} />
-            <Rating />
+            <Rating onClick={setRatingValue} value={ratingValue}/>
+            <div>Uncontrolled Rating</div>
+            <UncontrolledRating/>
            <hr/>
             <Switcher/>
             <Switcher/>
