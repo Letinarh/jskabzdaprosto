@@ -18,6 +18,8 @@ const [ratingValue,setRatingValue] = useState<ratingValueType>(0)
             <Rating onClick={setRatingValue} value={ratingValue}/>
             <div>Uncontrolled Rating</div>
             <UncontrolledRating/>
+            <div>some text</div>
+            <UncontrolledRating/>
            <hr/>
             <Switcher/>
             <Switcher/>
